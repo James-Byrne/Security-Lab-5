@@ -1,0 +1,59 @@
+<ion-view title="Prime Number Generator">
+  <ion-content class="has-header" padding="'true'">
+    <div class="list card" ng-controller="rsaAlgorithmCtrl">
+      <div class="item item-divider">RSA Algorithm</div>
+      <div class="item item-body">
+        <div>
+          <p>
+            <strong>Number Output</strong>
+          </p>
+        </div>
+        <div class="spacer" style="height: 100px;"></div>
+        <button class="button button-energized button-block">Generate a number</button>
+      </div>
+    </div>
+    <div class="list card" ng-controller="gaussianAlgorithmCtrl">
+      <div class="item item-divider">Gaussian Algorithm</div>
+      <div class="item item-body">
+        <div>
+          <p>
+            <strong>Number Output</strong>
+          </p>
+        </div>
+        <div class="spacer" style="height: 100px;"></div>
+        <button class="button button-energized button-block ">Generate a number</button>
+      </div>
+    </div>
+    <div class="list card" ng-controller="genTenNumbers">
+      <div class="item item-divider">Generate Ten Large Prime Numbers</div>
+      <div class="item item-body">
+        <div>
+          <div ng-repeat="number in numbers">
+            <p>
+              Number : <br>
+             {{number}}
+            </p>
+          </div>
+        </div>
+        <button class="button button-energized button-block" ng-click="getNumbers()">Generate ten numbers</button>
+      </div>
+    </div>
+    <div class="list card" ng-controller="findNextPrime">
+      <div class="item item-divider">Find next Prime</div>
+      <div class="item item-body">
+        <form class="list">
+          <label class="item item-input" name="largePrimeInput">
+            <input placeholder="Give me a Large Prime!!" type="number" ng-model="number">
+          </label>
+        </form>
+        <div>
+          <p>
+            Next Prime : <br>
+            {{nextPrime}}
+          </p>
+        </div>
+        <button class="button button-energized button-block" ng-click="getNextPrime()">Find next prime</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
