@@ -1,8 +1,18 @@
 angular.module('app.controllers', [])
 
 
-.controller('rsaAlgorithmCtrl', function($scope) {
+.controller('xorShiftAlgorithmCtrl', function($scope) {
 
+  $scope.shiftNumber = function() {
+    // Trun the user input into a BigInt
+    var num = bigInt($scope.numberShift);
+    // Take the Exclusive OR (XOR) of the number after it is bitshifted
+    num = bigInt(num).xor(bigInt(num).shiftLeft(21));
+    num = bigInt(num).xor(bigInt(num).shiftRight(35));
+    
+    // Assign the final number to the $scope for display
+    $scope.shiftedNumber = bigInt(num).xor(bigInt(num).shiftLeft(4));
+  };
 })
 
 .controller('gaussianAlgorithmCtrl', function($scope) {
@@ -49,7 +59,7 @@ angular.module('app.controllers', [])
       number += 1;
     }
 
-    // display the next prime number 
+    // display the next prime number
     $scope.nextPrime = number;
   };
 })
