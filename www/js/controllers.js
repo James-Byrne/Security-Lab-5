@@ -11,7 +11,8 @@ angular.module('app.controllers', [])
     num = bigInt(num).xor(bigInt(num).shiftRight(35));
 
     // Assign the final number to the $scope for display
-    $scope.shiftedNumber = bigInt(num).xor(bigInt(num).shiftLeft(4));
+    $scope.shiftedNumber = bigInt(num).xor(bigInt(num).shiftLeft(4)).toString();
+    // $scope.shiftedNumber = num.toString;
   };
 })
 
@@ -20,20 +21,30 @@ angular.module('app.controllers', [])
 
   $scope.linearCongruent = function () {
     // Define the extra variables
-    var mod = 40;
-    var multi = 222;
+    // Use BigInt to get two random numbers for the method below
+    var mod = bigInt.randBetween(2e32, 2e40);
+    var multi = bigInt.randBetween(2e32, 2e40);
 
     // Use the time as a source of randomness
     var d = new Date();
     var plus = d.getTime();
 
-    var num = bigInt($scope.seedNumber);
+    // Check the user has entered a number but not technically needed 
+    if(!$scope.seedNumber){
+      $scope.result = "Please enter a number";
 
-    for (var i=0; i< 100; i++) {
+    } else {
+      // Get the user input and convert to a bigInt
+      var num = bigInt($scope.seedNumber);
 
-      num = bigInt(num).mod(mod).plus(plus).multiply(multi);
+      // Run the algorithm 100 times, this could also be random
+      for (var i=0; i < 100; i++) {
+        num = bigInt(num).mod(mod).plus(plus).multiply(multi);
+        console.log(num);
+      }
+      // Set the result of algorithm
+      $scope.result = num.toString();
     }
-    $scope.result = num;
   };
 })
 
