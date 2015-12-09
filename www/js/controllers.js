@@ -9,14 +9,32 @@ angular.module('app.controllers', [])
     // Take the Exclusive OR (XOR) of the number after it is bitshifted
     num = bigInt(num).xor(bigInt(num).shiftLeft(21));
     num = bigInt(num).xor(bigInt(num).shiftRight(35));
-    
+
     // Assign the final number to the $scope for display
     $scope.shiftedNumber = bigInt(num).xor(bigInt(num).shiftLeft(4));
   };
 })
 
-.controller('gaussianAlgorithmCtrl', function($scope) {
+.controller('linearCongruentialGeneratorCtrl', function($scope) {
 
+
+  $scope.linearCongruent = function () {
+    // Define the extra variables
+    var mod = 40;
+    var multi = 222;
+
+    // Use the time as a source of randomness
+    var d = new Date();
+    var plus = d.getTime();
+
+    var num = bigInt($scope.seedNumber);
+
+    for (var i=0; i< 100; i++) {
+
+      num = bigInt(num).mod(mod).plus(plus).multiply(multi);
+    }
+    $scope.result = num;
+  };
 })
 
 .controller('genTenNumbers', function ($scope) {
